@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/form";
 import { Control } from "react-hook-form";
 import { FormFieldType } from "./forms/PatientForm";
-import { Label } from "@radix-ui/react-label";
 
 interface CustomProps {
   control: Control<any>;
@@ -28,8 +27,14 @@ interface CustomProps {
   children?: React.ReactNode;
   renderSkeleton?: (field: any) => React.ReactNode;
 }
+// * CustomFormField component for rendering different form fields
+const RenderField = () => {
+  return <Input type="text" placeholder="John doe" />;
+};
 
-const CustomFormField = ({ control, fieldType, name, label }: CustomProps) => {
+const CustomFormField = (props: CustomProps) => {
+  const { control, fieldType, name, label } = props;
+
   return (
     <FormField
       control={control}
@@ -39,6 +44,8 @@ const CustomFormField = ({ control, fieldType, name, label }: CustomProps) => {
           {fieldType !== FormFieldType.CHECKBOX && label && (
             <FormLabel>{label}</FormLabel>
           )}
+
+          <RenderField field={field} props={props} />
         </FormItem>
       )}
     />
