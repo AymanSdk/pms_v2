@@ -9,6 +9,7 @@ import { z } from "zod";
 import { UserFormValidation } from "@/lib/validation";
 import CustomFormField from "../CustomFormField";
 import { useRouter } from "next/navigation";
+import { createuser } from "@/lib/actions/patient.actions";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -41,13 +42,13 @@ const PatientForm = () => {
     setIsLoading(true);
 
     try {
-      // const userData = {
-      //   name,
-      //   email,
-      //   phone,
-      // };
-      // const user = await createUser(userData);
-      // if (user) router.push(`/patients/${user.$id}/register`);
+      const userData = {
+        name,
+        email,
+        phone,
+      };
+      const user = await createuser(userData);
+      if (user) router.push(`/patients/${user.$id}/register`);
     } catch (error) {
       console.log(error);
     }
