@@ -36,7 +36,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     case FormFieldType.INPUT:
       return (
         <div className="flex rounded-md border border-dark-500 bg-dark-400">
-          {props.iconSrc && (
+          {iconSrc && (
             <Image
               src={iconSrc}
               alt={iconAlt || "icon"}
@@ -45,6 +45,13 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               className="ml-2 "
             />
           )}
+          <FormControl>
+            <Input
+              {...field}
+              placeholder={placeholder}
+              className="shad-input border-0"
+            />
+          </FormControl>
         </div>
       );
 
