@@ -9,13 +9,13 @@ import { Input } from "@/components/ui/input";
 import CustomFormField from "../CustomFormField";
 
 export enum FormFieldType {
-  INPUT = "Input",
-  TEXTAREA = "Textarea",
-  PHONE_INPUT = "PhoneInput",
-  CHECKBOX = "Checkbox",
-  DATE_PICKER = "DatePicker",
-  SELECT = "Select",
-  SKELETON = "Skeleton",
+  INPUT = "input",
+  TEXTAREA = "textarea",
+  PHONE_INPUT = "phoneInput",
+  CHECKBOX = "checkbox",
+  DATE_PICKER = "datePicker",
+  SELECT = "select",
+  SKELETON = "skeleton",
 }
 
 const formSchema = z.object({

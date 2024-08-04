@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Control } from "react-hook-form";
 import { FormFieldType } from "./forms/PatientForm";
+import Image from "next/image";
 
 interface CustomProps {
   control: Control<any>;
@@ -28,8 +29,28 @@ interface CustomProps {
   renderSkeleton?: (field: any) => React.ReactNode;
 }
 // * CustomFormField component for rendering different form fields
-const RenderField = () => {
-  return <Input type="text" placeholder="John doe" />;
+const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
+  const { fieldType, iconSrc, iconAlt, placeholder } = props;
+
+  switch (fieldType) {
+    case FormFieldType.INPUT:
+      return (
+        <div className="flex rounded-md border border-dark-500 bg-dark-400">
+          {props.iconSrc && (
+            <Image
+              src={iconSrc}
+              alt={iconAlt || "icon"}
+              height={24}
+              width={24}
+              className="ml-2 "
+            />
+          )}
+        </div>
+      );
+
+    default:
+      break;
+  }
 };
 
 const CustomFormField = (props: CustomProps) => {
@@ -46,6 +67,7 @@ const CustomFormField = (props: CustomProps) => {
           )}
 
           <RenderField field={field} props={props} />
+          <FormMessage className="shad-error" />
         </FormItem>
       )}
     />
