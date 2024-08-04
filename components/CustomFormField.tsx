@@ -1,5 +1,7 @@
 "use client";
 
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 import React from "react";
 import { Input } from "@/components/ui/input";
 import {
@@ -53,6 +55,20 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
             />
           </FormControl>
         </div>
+      );
+    case FormFieldType.PHONE_INPUT:
+      return (
+        <FormControl>
+          <PhoneInput
+            defaultCountry="MA"
+            placeholder={placeholder}
+            international
+            withCountryCallingCode
+            value={field.value as E164Number | undefined}
+            onChange={field.onChange}
+            className="input-phone"
+          />
+        </FormControl>
       );
 
     default:
