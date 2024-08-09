@@ -13,11 +13,9 @@ export const createUser = async (user: CreateUserParams) => {
   } catch (error: any) {
     // check if user already exists
     if (error && error?.code === 409) {
-      const existingUser = await users.list([
-        Query.equal("email", [user.email]),
-      ]);
+      const documents = await users.list([Query.equal("email", [user.email])]);
 
-      return existingUser.users[0];
+      return documents?.users[0];
     }
   }
 };
