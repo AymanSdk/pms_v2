@@ -5,11 +5,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
-import { z } from "zod";
 import { UserFormValidation } from "@/lib/validation";
-import CustomFormField from "../CustomFormField";
 import { useRouter } from "next/navigation";
-import { createuser } from "@/lib/actions/patient.actions";
+import { createUser } from "@/lib/actions/patient.actions";
+import { z } from "zod";
+import CustomFormField from "../CustomFormField";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -47,7 +47,7 @@ const PatientForm = () => {
         email,
         phone,
       };
-      const user = await createuser(userData);
+      const user = await createUser(userData);
       if (user) router.push(`/patients/${user.$id}/register`);
     } catch (error) {
       console.log(error);
