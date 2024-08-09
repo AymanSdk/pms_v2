@@ -1,7 +1,7 @@
 import { ID, Query } from "node-appwrite";
 import { users } from "../appwrite.config";
 
-export const createuser = async (user: CreateUserParams) => {
+export const createUser = async (user: CreateUserParams) => {
   try {
     const newUser = await users.create(
       ID.unique(),
@@ -11,6 +11,7 @@ export const createuser = async (user: CreateUserParams) => {
       user.name
     );
   } catch (error: any) {
+    // check if user already exists
     if (error && error?.code === 409) {
       const documents = await users.list([Query.equal("email", [user.email])]);
 
